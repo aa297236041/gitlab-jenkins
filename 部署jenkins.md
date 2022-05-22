@@ -1,5 +1,4 @@
-## 安装 Jenkins：
-1、安装依赖软件 JDK
+## 安装依赖软件 JDK
   ```bash
   yum install java-1.8.0-openjdk* -y
   ```
@@ -11,7 +10,7 @@
 [root@localhost jenkins]# rz  #上传安装包
 jenkins.war
   ```
-### 启动 jenkins
+## 启动 jenkins
  ```bash
  [root@localhost jenkins]# java -jar jenkins.war     #执行java -jar jenkins.war 即可前台启动
  ```
@@ -20,11 +19,11 @@ jenkins.war
  ![](./media/jenkins启动成功.png)
  
  
- ### 解锁jenkins
+ ## 解锁jenkins
  
  ![](./media/解锁jenkins.png)
 
-### 安装配置(选择自定义配置)
+## 安装配置(选择自定义配置)
 
 ![](./media/图片1.png)
 ![](./media/图片2.png)
@@ -34,10 +33,30 @@ jenkins.war
     [root@Cengtos7-4 .jenkins]# sed -i 's/http:\/\/www.google.com\//http:\/\/www.baidu.com\//g' /root/.jenkins/updates/default.json
     [root@Cengtos7-4 .jenkins]# sed -i 's#http://updates.jenkins-ci.org/download/#https://mirrors.tuna.tsinghua.edu.cn/jenkins/#g' /root/.jenkins/updates/default.json
     ```
+  创建用户后，默认下一步  
     
-    
- ### 全局设置
-
-
+ ## 全局设置
+ ![](./media/图片5.png)
+ ![](./media/图片6.png)
+ ![](./media/图片7.png)
+ ![](./media/图片8.png)
+ ![](./media/图片9.png)
+ ![](./media/图片10.png)
+ ![](./media/图片11.png)
+ 
+  下载 maven [https://maven.apache.org/download.cgi](https://maven.apache.org/download.cgi)
+  
+ ![](./media/图片12.png)
+ ![](./media/图片13.png)
+ ![](./media/图片14.png)
+ ![](./media/图片15.png)
+ ![](./media/图片16.png)
+ ![](./media/图片17.png)
+ ![](./media/图片18.png)
+ ![](./media/图片19.png)
+ 
+ 
+ # 
+## 到此 jenkins 部署完成
 
 
