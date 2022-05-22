@@ -17,3 +17,6 @@ jenkins.war
  ```
  有以下输出，表示启动成功
  
+ ![](./media/jenkins启动成功.png)
+
+
