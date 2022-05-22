@@ -60,7 +60,8 @@ jenkins.war
  到/home/jenkins/shell目录下创建启动脚本jenkins.sh
 
 ```bash
-cd /home/jenkins/shell
+mkdir -p /usr/local/jenkins/shell
+cd /usr/local/jenkins/shell
 vim jenkins.sh
 ```
 
@@ -78,7 +79,7 @@ if [ -n "$pid" ];then
     echo 'jenkins is running...'
 else
     # java启动服务 配置java安装根路径,和启动war包存的根路径
-    nohup java -DJENKINS_HOME=$JENKINS_HOME/root -jar $JENKINS_HOME/jenkins.war --httpPort=8888 >/dev/null 2>&1 &
+    nohup java -DJENKINS_HOME=$JENKINS_HOME/root -jar $JENKINS_HOME/jenkins.war --httpPort=8080 >/dev/null 2>&1 &
     echo "服务启动查看进程:"
     echo `ps -ef | grep jenkins.war | grep -v 'jenkins.sh'|grep -v grep`
 fi
@@ -111,9 +112,9 @@ After=network.target
 Type=forking
 User=jenkins
 Group=jenkins
-ExecStart=/home/jenkins/shell/jenkins.sh start
-ExecReload=/home/jenkins/shell/jenkins.sh reload
-ExecStop=/home/jenkins/shell/jenkins.sh stop
+ExecStart=/usr/local/jenkins/shell/jenkins.sh start
+ExecReload=/usr/local/jenkins/shell/jenkins.sh reload
+ExecStop=/usr/local/jenkins/shell/jenkins.sh stop
 PrivateTmp=true
 
 [Install]
