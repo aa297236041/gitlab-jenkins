@@ -158,7 +158,7 @@ systemctl status jenkins.service
 查看设置开机启动的服务列表
 
  ```bash
- systemctl list-units --type=service
+ systemctl list-units --type=service |grep jenkins
  ```
 
 
