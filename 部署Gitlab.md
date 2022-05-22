@@ -73,6 +73,7 @@ wget https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el7/gitlab-ce-12.1.6-ce.
 ```
 输入本机IP地址即可访问     默认账户root 密码需要自己定义
 ```
+    gitlab 查看日志命令：gitlab-ctl tail
 
 ### 九、Gitlab汉化WEB界面
 
