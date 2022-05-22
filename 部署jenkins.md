@@ -57,85 +57,111 @@ jenkins.war
  
  ## 设置开机启动Jenkins
  
- 到/home/jenkins/shell目录下创建启动脚本jenkins.sh
+到/usr/local/jenkins/目录下创建 启动/停止 脚本
 
 ```bash
-mkdir -p /usr/local/jenkins/shell
 cd /usr/local/jenkins/shell
-vim jenkins.sh
+
 ```
 
 ```bash
-#!/usr/bin/bash
-
-# 导入环境变量
-export JENKINS_HOME=/usr/local/jenkins/
-
-cd $JENKINS_HOME
-
-pid=`ps -ef | grep jenkins.war | grep -v 'grep'| awk '{print $2}'`
-if [ "$1" = "start" ];then
-if [ -n "$pid" ];then
-    echo 'jenkins is running...'
-else
-    # java启动服务 配置java安装根路径,和启动war包存的根路径
-    nohup java -DJENKINS_HOME=$JENKINS_HOME/root -jar $JENKINS_HOME/jenkins.war --httpPort=8080 >/dev/null 2>&1 &
-    echo "服务启动查看进程:"
-    echo `ps -ef | grep jenkins.war | grep -v 'jenkins.sh'|grep -v grep`
-fi
-elif [ "$1" = "stop" ];then
-    exec ps -ef | grep jenkins | grep -v grep | awk '{print $2}'| xargs kill -9
-    echo 'jenkins is stop...'
-else
-    echo 'Please input like this:"./jenkins.sh start" or "./jenkins stop"'
-fi
+cat << EOF >startup.sh
+#!/bin/sh
+java -jar /usr/local/jenkins/jenkins.war --httpPort=8080
+EOF
 ```
- 
- 添加可执行权限
- 
+
+
+
+``` bash
+cat << EOF >shutdown.sh
+#/bin/sh
+# 使用fuser关闭占用端口的程序
+fuser -k 8080/tcp
+EOF
+```
+
+
+
+添加可执行权限
+
  ```bash
- chmod +x /usr/local/jenkins/shell/jenkins.sh
+ chmod +x startup.sh shutdown.sh
  ```
- 
+
  在 /lib/systemd/system 服务注册目录下创建 jenkins.service
- 
+
  ```bash
  vim /lib/systemd/system/jenkins.service
  ```
- 
+
  ```bash
- [Unit]
-Description=Jenkins
+[Unit]
+Description=jenkins project
 After=network.target
 
 [Service]
-Type=forking
-User=jenkins
-Group=jenkins
-ExecStart=/usr/local/jenkins/shell/jenkins.sh start
-ExecReload=/usr/local/jenkins/shell/jenkins.sh reload
-ExecStop=/usr/local/jenkins/shell/jenkins.sh stop
-PrivateTmp=true
+Type=simple
 
-[Install]
-WantedBy=multi-user.target
+ExecStart=/usr/local/jenkins/startup.sh
+ExecReload=
+ExecStop=/usr/local/jenkins/shutdown.sh
+PrivateTmp=true
  ```
- 
+
  刷新配置
- 
+
  ```bash
  systemctl daemon-reload
  ```
- 
- 设置开机启动
+
+启动 jenkins
+
+```bash
+systemctl start jenkins.service
+```
+
+
+
+查看 jenkins 状态
+
+``` bash
+systemctl status jenkins.service
+```
+
+
+
+停止 jenkins 
+
+``` bash
+systemctl stop jenkins.service
+```
+
+
+
+查看 jenkins 状态
+
+``` bash
+systemctl status jenkins.service
+```
+
+
+
+设置开机启动
+
  ```bash
  systemctl enable jenkins.service
  ```
- 查看设置开机启动的服务列表
+
+ 
+
+查看设置开机启动的服务列表
+
  ```bash
  systemctl list-units --type=service
  ```
- 
+
+
  # 
 ## 到此 jenkins 部署完成
 
