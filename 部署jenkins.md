@@ -94,7 +94,7 @@ fi
  添加可执行权限
  
  ```bash
- chmod +x /home/jenkins/shell/jenkins.sh
+ chmod +x /usr/local/jenkins/shell/jenkins.sh
  ```
  
  在 /lib/systemd/system 服务注册目录下创建 jenkins.service
