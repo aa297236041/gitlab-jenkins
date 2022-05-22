@@ -55,6 +55,85 @@ jenkins.war
  ![](./media/图片18.png)
  ![](./media/图片19.png)
  
+ ## 设置开机启动Jenkins
+ 
+ 到/home/jenkins/shell目录下创建启动脚本jenkins.sh
+
+```bash
+cd /home/jenkins/shell
+vim jenkins.sh
+```
+
+```bash
+#!/usr/bin/bash
+
+# 导入环境变量
+export JENKINS_HOME=/usr/local/jenkins/
+
+cd $JENKINS_HOME
+
+pid=`ps -ef | grep jenkins.war | grep -v 'grep'| awk '{print $2}'`
+if [ "$1" = "start" ];then
+if [ -n "$pid" ];then
+    echo 'jenkins is running...'
+else
+    # java启动服务 配置java安装根路径,和启动war包存的根路径
+    nohup java -DJENKINS_HOME=$JENKINS_HOME/root -jar $JENKINS_HOME/jenkins.war --httpPort=8888 >/dev/null 2>&1 &
+    echo "服务启动查看进程:"
+    echo `ps -ef | grep jenkins.war | grep -v 'jenkins.sh'|grep -v grep`
+fi
+elif [ "$1" = "stop" ];then
+    exec ps -ef | grep jenkins | grep -v grep | awk '{print $2}'| xargs kill -9
+    echo 'jenkins is stop...'
+else
+    echo 'Please input like this:"./jenkins.sh start" or "./jenkins stop"'
+fi
+```
+ 
+ 添加可执行权限
+ 
+ ```bash
+ chmod +x /home/jenkins/shell/jenkins.sh
+ ```
+ 
+ 在 /lib/systemd/system 服务注册目录下创建 jenkins.service
+ 
+ ```bash
+ vim /lib/systemd/system/jenkins.service
+ ```
+ 
+ ```bash
+ [Unit]
+Description=Jenkins
+After=network.target
+
+[Service]
+Type=forking
+User=jenkins
+Group=jenkins
+ExecStart=/home/jenkins/shell/jenkins.sh start
+ExecReload=/home/jenkins/shell/jenkins.sh reload
+ExecStop=/home/jenkins/shell/jenkins.sh stop
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+ ```
+ 
+ 刷新配置
+ 
+ ```bash
+ systemctl daemon-reload
+ ```
+ 
+ 设置开机启动
+ ```bash
+ systemctl enable jenkins.service
+ ```
+ 查看设置开机启动的服务列表
+ ```bash
+ systemctl list-units --type=service
+ ```
  
  # 
 ## 到此 jenkins 部署完成
