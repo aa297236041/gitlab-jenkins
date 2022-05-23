@@ -183,3 +183,18 @@ gitlab-ctl restart
 ```bash
 netstat -tunlp | grep 8092
 ```
+
+问题二：
+
+卸载重装，一直卡在
+\* file[/opt/gitlab/sv/logrotate/down] action nothing (skipped due to action :nothing)
+
+\* directory[/opt/gitlab/service] action create (up to date)
+
+\* link[/opt/gitlab/service/logrotate] action create (up to date)
+
+\* ruby_block[wait for logrotate service socket] action run
+
+解决方法：
+
+
