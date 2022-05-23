@@ -161,6 +161,10 @@ directory '/var/opt/gitlab/gitlab-rails/working'
 修改gitlab.rb 配置
 
 ```bash
+vim /etc/gitlab/gitlab.rb
+```
+
+```bash
 ### Advanced settings
 # puma['listen'] = '127.0.0.1'
 puma['port'] = 8092 # 默认8080,去掉注释修改为同 `puma.rb` 中配置的端口:8092
