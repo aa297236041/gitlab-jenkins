@@ -143,7 +143,7 @@ cat gitlab/VERSION
 ## 常见问题：
 问题一：<span id="jump">8080端口被占用，访问502</span>
 
- ** 解决方案：**
+ **解决方案:**
 
 修改 puma.rb 配置
 ```bash
