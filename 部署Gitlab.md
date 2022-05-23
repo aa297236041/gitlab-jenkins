@@ -88,6 +88,17 @@ wget https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el7/gitlab-ce-12.1.6-ce.
 
 ```
 
+获取密码
+```bah
+Notes:
+Default admin account has been configured with following details:
+Username: root
+Password: You didn't opt-in to print initial root password to STDOUT.
+Password stored to /etc/gitlab/initial_root_password. This file will be cleaned up in first reconfigure run after 24 hours.
+
+```
+
+
  如访问502 可以看下是不是 80 和 8080 端口被占用了，如果端口被占用，可以参考: [8080 端口被占用,访问 502](#jump)
 
 
