@@ -156,6 +156,7 @@ bind 'unix:///var/opt/gitlab/gitlab-rails/sockets/gitlab.socket'
 bind 'tcp://127.0.0.1:8092' ## 默认8080,修改为自己服务不冲突的端口,这里我改为8092
 
 directory '/var/opt/gitlab/gitlab-rails/working'
+```
 
 修改gitlab.rb 配置
 
