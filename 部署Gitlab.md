@@ -141,7 +141,7 @@ cat gitlab/VERSION
 <br/>
 
 ## 常见问题：
-问题一：<span id="jump">8080端口被占用，访问502</span>
+### 问题一：<span id="jump">8080端口被占用，访问502</span>
 
  **解决方案:**
 
@@ -184,7 +184,7 @@ gitlab-ctl restart
 netstat -tunlp | grep 8092
 ```
 
-问题二：
+### 问题二：
 
 卸载重装，一直卡在
 \* file[/opt/gitlab/sv/logrotate/down] action nothing (skipped due to action :nothing)
