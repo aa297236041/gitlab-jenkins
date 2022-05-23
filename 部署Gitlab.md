@@ -196,5 +196,11 @@ netstat -tunlp | grep 8092
 \* ruby_block[wait for logrotate service socket] action run
 
 解决方法：
+```bash
+1. 按住CTRL+C强制结束
 
+2. 执行  systemctl restart gitlab-runsvdir
+
+3. 再次执行  gitlab-ctl reconfigure
+```
 
