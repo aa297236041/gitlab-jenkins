@@ -113,7 +113,7 @@ Password stored to /etc/gitlab/initial_root_password. This file will be cleaned 
 
 ![ds2](./media/gitlab02.png)
 
-再此刷新页面即可
+再此刷新页面即可（其他用户也是一样操作）
 
 <br/>
 
