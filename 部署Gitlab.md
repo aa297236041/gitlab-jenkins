@@ -104,33 +104,16 @@ Password stored to /etc/gitlab/initial_root_password. This file will be cleaned 
 
 <br/>  
   
+## 修改语言为中文
+点击头像，再点击【Preference】
 
-## 九、Gitlab汉化WEB界面
+![ds](./media/gitlab01.png)
 
-项目地址：https://gitlab.com/xhang/gitlab
+找到【Localization】位置，选择简体中文，然后点击【Save changes】
 
-下载最新的汉化包：
+![ds2](./media/gitlab02.png)
 
-git clone https://gitlab.com/xhang/gitlab.git
-
-也可以指定版本：
-
-git clone https://gitlab.com/xhang/gitlab.git -b  v12.1.6-zh
-
-查看该汉化补丁的版本：
-
-cat gitlab/VERSION
-
-覆盖汉化：
-
-将下载下来的汉化版目录下所有内容拷贝到gitlab指定路径下，cp前面加的“\”作用：覆盖时不提示
-
-```
-[root@localhost ~]# \cp -rf gitlab/* /opt/gitlab/embedded/service/gitlab-rails/
-```
-
-回到web界面，点击右上角的选项，选择Settings，然后选择右边菜单栏的Preferences，下滑找到Language，选择简体中文
-
+再此刷新页面即可
 
 <br/>
 
