@@ -152,7 +152,7 @@ gitlab-ctl restart
 ```
 注意:如果修改完gitlab-http.conf再运行gitlab-ctl reconfigure，就会被还原,修改并不会被覆盖。
 
-(4)  查看端口占用情况
+(5)  查看端口占用情况
 ```bash
 netstat -tunlp 
 ```
