@@ -127,44 +127,29 @@ Password stored to /etc/gitlab/initial_root_password. This file will be cleaned 
 ### 问题一：<span id="jump">8080端口被占用，访问502</span>
 
  **解决方案:**
+(1) vim /etc/gitlab/gitlab.rb
 
-修改 puma.rb 配置
+nginx['listen_port'] = 8000
+
+(2) gitlab-ctl reconfigure
+
+(3) vim /var/opt/gitlab/nginx/conf/gitlab-http.conf 
+
+listen *:8000;
+
+(4)然后重启gitlab服务
 ```bash
-vim /var/opt/gitlab/gitlab-rails/etc/puma.rb
-```
-```bash
-
-bind 'unix:///var/opt/gitlab/gitlab-rails/sockets/gitlab.socket'
-
-bind 'tcp://127.0.0.1:8092' ## 默认8080,修改为自己服务不冲突的端口,这里我改为8092
-
-directory '/var/opt/gitlab/gitlab-rails/working'
-```
-
-修改gitlab.rb 配置
-
-```bash
-vim /etc/gitlab/gitlab.rb
-```
-
-```bash
-### Advanced settings
-# puma['listen'] = '127.0.0.1'
-puma['port'] = 8092 # 默认8080,去掉注释修改为同 `puma.rb` 中配置的端口:8092
-# puma['socket'] = '/var/opt/gitlab/gitlab-rails/sockets/gitlab.socket'
-# puma['somaxconn'] = 1024
-
-```
-
-生效配置，重启GitLab服务
-```bash
-gitlab-ctl reconfigu
 gitlab-ctl restart
 ```
+注意:如果修改完gitlab-http.conf再运行gitlab-ctl reconfigure，就会被还原,修改并不会被覆盖。
 
-检查端口情况
+(4)  查看端口占用情况
 ```bash
-netstat -tunlp | grep 8092
+netstat -tunlp 
+```
+如下显示,则nigix 8000端口启动成功
+```bash
+tcp        0      0 0.0.0.0:8000            0.0.0.0:*               LISTEN      78769/nginx: master
 ```
 
 ### 问题二：卸载重装，一直卡在 ruby_block[wait for logrotate service socket] action run
