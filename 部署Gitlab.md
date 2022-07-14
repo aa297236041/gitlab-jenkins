@@ -127,16 +127,25 @@ Password stored to /etc/gitlab/initial_root_password. This file will be cleaned 
 ### 问题一：<span id="jump">8080端口被占用，访问502</span>
 
  **解决方案:**
-(1) vim /etc/gitlab/gitlab.rb
-
+ 
+(1) 
+```bash
+vim /etc/gitlab/gitlab.rb
+```
+```bash
 nginx['listen_port'] = 8000
+```
+(2) 
+```bash
+gitlab-ctl reconfigure
+```
 
-(2) gitlab-ctl reconfigure
-
-(3) vim /var/opt/gitlab/nginx/conf/gitlab-http.conf 
-
+(3) 
+```basj
+vim /var/opt/gitlab/nginx/conf/gitlab-http.conf 
+```bash
 listen *:8000;
-
+```
 (4)然后重启gitlab服务
 ```bash
 gitlab-ctl restart
