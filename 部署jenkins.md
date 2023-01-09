@@ -118,9 +118,9 @@ After=network.target
 [Service]
 Type=simple
 
-ExecStart=/usr/local/jenkins/startup.sh
+ExecStart=/usr/local/jenkins/shell/startup.sh
 ExecReload=
-ExecStop=/usr/local/jenkins/shutdown.sh
+ExecStop=/usr/local/jenkins/shell/shutdown.sh
 PrivateTmp=true
  ```
 
