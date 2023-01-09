@@ -74,6 +74,7 @@ jenkins.war
 到/usr/local/jenkins/目录下创建 启动/停止 脚本
 
 ```bash
+mkdir /usr/local/jenkins/shell
 cd /usr/local/jenkins/shell
 
 ```
