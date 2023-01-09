@@ -14,7 +14,7 @@ sed -i 's/^SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config
 
 ## 安装依赖软件 JDK
   ```bash
-  yum install java-1.8.0-openjdk* -y
+ yum install java-11-openjdk* -y
   ```
   使用 war 包安装 Jenkins（自行去官网下载 [https://www.jenkins.io/download/](https://www.jenkins.io/download/))
   
