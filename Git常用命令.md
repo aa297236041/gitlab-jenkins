@@ -12,21 +12,6 @@ yum install -y git
 git config --global user.name "hjz"
 git config --global user.email hjz@example.com
 ```
-
-
-
-### 一、创建git用户
-
-```shell
-git config --global user.name "hjz"
-```
-
-
-
-### 二、创建用户邮箱
-
-```shell
-git config --global user.email hjz@example.com
 ```
 
 - 注意git config命令的--global参数，用了这个参数，表示这台机器上所有的Git仓库都会使用这个配置，当然也可以对某个仓库指定不同的用户名和Email地址。
