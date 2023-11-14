@@ -52,7 +52,7 @@ wget https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el7/gitlab-ce-12.1.6-ce.
 ## 五、安装rpm包
 
 ```bash
-[root@localhost ~]# rpm -ivh gitlab-ce-12.1.6-ce.0.el7.x86_64.rpm
+rpm -ivh gitlab-ce-12.1.6-ce.0.el7.x86_64.rpm
 ```
 
 根据提示，继续执行指令配置gitlab。
@@ -63,18 +63,18 @@ wget https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el7/gitlab-ce-12.1.6-ce.
 
 将external_url变量的地址，修改自己需要的域名，或者是自己本机的 IP ，如 external_url 'http://172.25.55.54' ,最后执行：wq
 ```bash
-[root@localhost ~]# vim /etc/gitlab/gitlab.rb
+vim /etc/gitlab/gitlab.rb
 ```
 
 如果修改了配置文件，还需要重新加载配置内容。
 ```bash
-[root@localhost ~]# gitlab-ctl reconfigure
-[root@localhost ~]# gitlab-ctl restart
+gitlab-ctl reconfigure
+gitlab-ctl restart
 ```
 
 查看gitlab版本
 ```bash
-[root@localhost ~]# head -1 /opt/gitlab/version-manifest.txt   
+head -1 /opt/gitlab/version-manifest.txt   
 ```
   
 
