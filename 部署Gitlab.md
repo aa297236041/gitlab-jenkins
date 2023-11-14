@@ -100,8 +100,8 @@ gitlab-rails console -e production
 user = User.where(id: 1).first
 
 #设置新密码     
-user.password = '12345678'
-user.password_confirmation = '12345678'
+user.password = 'abc-1234'
+user.password_confirmation = 'abc-1234'
 
 #保存更改
 user.save!
