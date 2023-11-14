@@ -68,6 +68,8 @@ jenkins.war
  ![](./media/图片17.png)
  ![](./media/图片18.png)
  ![](./media/图片19.png)
+ ![](./media/图片20.png)
+
  
  ## 设置开机启动Jenkins
  
