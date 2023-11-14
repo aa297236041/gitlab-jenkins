@@ -83,18 +83,35 @@ head -1 /opt/gitlab/version-manifest.txt
 
 ## 七、访问Gitlab
 
-```
-输入本机IP地址即可访问     默认账户root 密码需要自己定义
-
-```
 
 获取密码
+
+方法一：
+```bash
+cat /etc/gitlab/initial_root_password
+```
+方法二：
+登录数据库，重置密码
 ```bah
-Notes:
-Default admin account has been configured with following details:
-Username: root
-Password: You didn't opt-in to print initial root password to STDOUT.
-Password stored to /etc/gitlab/initial_root_password. This file will be cleaned up in first reconfigure run after 24 hours.
+#打开 GitLab 的 Rails 控制台
+gitlab-rails console -e production
+
+#在 Rails 控制台中，执行以下命令以获取 root 用户
+user = User.where(id: 1).first
+
+#设置新密码     
+user.password = '12345678'
+user.password_confirmation = '12345678'
+
+#保存更改
+user.save!
+
+#退出
+exit
+```
+
+```
+输入本机IP地址即可访问     默认账户root 
 
 ```
 
